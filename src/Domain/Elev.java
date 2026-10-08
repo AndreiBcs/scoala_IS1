@@ -1,5 +1,7 @@
 package Domain;
 
+import java.util.Objects;
+
 public class Elev {
 
     private String nume;
@@ -24,6 +26,18 @@ public class Elev {
 
     public void setNume(String nume) {
         this.nume = nume;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nume, gen);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Elev &&
+                this.nume.equals(((Elev) obj).nume) &&
+                this.gen.equals(((Elev) obj).gen);
     }
 
     @Override

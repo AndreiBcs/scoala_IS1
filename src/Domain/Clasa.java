@@ -53,7 +53,7 @@ public class Clasa {
     }
 
     public void eliminaElev(Elev elev){
-        this.elevi.remove(elev);
+        this.elevi.removeIf(e -> e.equals(elev));
     }
 
     public int getTotalElevi(){
