@@ -1,5 +1,6 @@
 import Domain.Scoala;
 
+import static Data.Activitati.*;
 import static Data.Clase.*;
 
 void main() {
@@ -17,6 +18,15 @@ void main() {
     Lazar.adaugaClasa(clasa_4A.getIdentificator(), clasa_4A);
     Lazar.adaugaClasa(clasa_4B.getIdentificator(), clasa_4B);
 
+    Lazar.adaugaActivitate(fotbal);
+    Lazar.adaugaActivitate(teatru);
+    Lazar.adaugaActivitate(sah);
+    Lazar.adaugaActivitate(pictura);
+
     System.out.println("Numar clase: " + Lazar.getNumarClase());
     System.out.println("Numar total elevi: " + Lazar.getTotalElevi());
+    System.out.println("Topul activitatilor dupa numarul de elevi participanti:");
+    Lazar.getTopulActivitatilor().forEach(System.out::println);
+    System.out.println("Numarul de elevi care participa la cel putin o activitate: "
+            + Lazar.getNumarEleviUniciActivitati());
 }

@@ -1,11 +1,14 @@
 package Domain;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Elev {
 
     private String nume;
     private Gen gen;
+    private final Set<Activitate> activitati = new HashSet<>();
 
     public Elev(String nume, Gen gen) {
         this.nume = nume;
@@ -43,5 +46,21 @@ public class Elev {
     @Override
     public String toString() {
         return nume + " (" + gen + ")";
+    }
+
+    public Set<Activitate> getActivitati() {
+        return activitati;
+    }
+
+    public void inscrieLaActivitate(Activitate activitate) {
+        this.activitati.add(activitate);
+    }
+
+    public void renuntaLaActivitate(Activitate activitate) {
+        this.activitati.remove(activitate);
+    }
+
+    public int getNumarActivitati() {
+        return activitati.size();
     }
 }

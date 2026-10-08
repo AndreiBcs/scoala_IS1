@@ -2,8 +2,14 @@ package Domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static Data.Activitati.*;
+import static Data.Activitati.pictura;
 import static Data.Clase.clasa_1A;
 import static Data.Clase.clasa_2A;
+import static Data.Profesori.ionescuElena;
+import static Data.Profesori.popescuIon;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScoalaTest {
@@ -95,5 +101,66 @@ class ScoalaTest {
         scoala.adaugaClasa(clasa_2A.getIdentificator(), clasa_2A);
 
         assertEquals(9, scoala.getTotalElevi());
+    }
+
+    @Test
+    void adaugaActivitate() {
+        var scoala = Scoala.createScoala();
+
+        scoala.adaugaActivitate(fotbal);
+
+        assertEquals(1, scoala.getNumarActivitati());
+    }
+
+    @Test
+    void eliminaActivitate() {
+        var scoala = Scoala.createScoala();
+
+        scoala.adaugaActivitate(fotbal);
+        scoala.eliminaActivitate(fotbal);
+
+        assertEquals(0, scoala.getNumarActivitati());
+    }
+
+    @Test
+    void schimbaProfesorulCoordonator() {
+        var scoala = Scoala.createScoala();
+
+        scoala.adaugaActivitate(fotbal);
+        scoala.schimbaProfesorulCoordonator(ionescuElena, fotbal);
+
+        assertEquals(fotbal, scoala.getActivitateDupaProfesor(ionescuElena));
+    }
+
+    @Test
+    void getActivitateDupaProfesor() {
+        var scoala = Scoala.createScoala();
+
+        scoala.adaugaActivitate(fotbal);
+
+        assertEquals(fotbal, scoala.getActivitateDupaProfesor(popescuIon));
+    }
+
+    @Test
+    void getTopulActivitatilor() {
+        var scoala = Scoala.createScoala();
+
+        scoala.adaugaActivitate(fotbal);
+        scoala.adaugaActivitate(teatru);
+        scoala.adaugaActivitate(sah);
+        scoala.adaugaActivitate(pictura);
+
+        List<Activitate> top = List.of(fotbal, teatru, sah, pictura);
+
+        assertEquals(top, scoala.getTopulActivitatilor());
+    }
+
+    @Test
+    void getNumarEleviUniciActivitati() {
+        var scoala = Scoala.createScoala();
+
+        scoala.adaugaActivitate(fotbal);
+
+        assertEquals(5, scoala.getNumarEleviUniciActivitati());
     }
 }
